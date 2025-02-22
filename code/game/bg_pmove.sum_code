@@ -1,0 +1,50 @@
+/*	if ( pm->cmd.upmove < 10 ) {
+		// not holding jump
+		return qfalse;
+	}
+
+	// must wait for jump to be released
+	if ( pm->ps->pm_flags & PMF_JUMP_HELD ) {
+		// clear upmove so cmdscale doesn't lower running speed
+		pm->cmd.upmove = 0;
+		return qfalse;
+	}
+
+
+	
+		//--------------- CHATGPT + EUGEN -----code-------------start
+
+//	if (pm->cmd.serverTime - pm->ps->lastJumpTime < 3800) { // 3.8s cooldown
+//		   pm->cmd.upmove = 0; // Block jump input
+ //   			return qfalse; // Prevent jump
+//	}
+		//--------------- CHATGPT + EUGEN -----code-------------end
+
+
+
+
+	pml.groundPlane = qfalse;		// jumping away
+	pml.walking = qfalse;
+	pm->ps->pm_flags |= PMF_JUMP_HELD;
+
+
+
+	pm->ps->groundEntityNum = ENTITYNUM_NONE;
+	pm->ps->velocity[2] = JUMP_VELOCITY;
+
+		//--------------- CHATGPT + EUGEN -----code-------------start
+	pm->ps->lastJumpTime = pm->cmd.serverTime;
+		//--------------- CHATGPT + EUGEN -----code-------------end
+
+	PM_AddEvent( EV_JUMP );
+
+	if ( pm->cmd.forwardmove >= 0 ) {
+		PM_ForceLegsAnim( LEGS_JUMP );
+		pm->ps->pm_flags &= ~PMF_BACKWARDS_JUMP;
+	} else {
+		PM_ForceLegsAnim( LEGS_JUMPB );
+		pm->ps->pm_flags |= PMF_BACKWARDS_JUMP;
+	}
+
+	return qtrue;
+}  */

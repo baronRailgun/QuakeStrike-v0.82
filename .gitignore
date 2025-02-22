@@ -1,0 +1,20 @@
+# Ignore build files
+/build/
+*.o
+*.obj
+*.dll
+*.so
+*.exe
+
+# Ignore compiled VMs
+vm/*.qvm
+
+# Ignore user configs and logs
+*.cfg
+*.log
+
+# Ignore IDE/project files
+.vscode/
+.idea/
+*.sln
+*.vcxproj*

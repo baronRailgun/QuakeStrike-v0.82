@@ -1,0 +1,22 @@
+if ( ! (ent->flags & FL_DROPPED_ITEM) && g_gametype.integer != GT_TEAM ) {
+
+    // Set the quantity of ammo to the amount the other player had
+    quantity = other->client->ps.ammo[ ent->item->giTag ];
+    
+    // If the player already has the same amount of ammo, no need to add anything
+    if (other->client->ps.ammo[ ent->item->giTag ] < quantity) {
+        quantity = quantity - other->client->ps.ammo[ ent->item->giTag ];
+    } else {
+        quantity = 1;  // Only add 1 if they already have full ammo
+    }
+}
+
+
+		if ( ! (ent->flags & FL_DROPPED_ITEM) && g_gametype.integer != GT_TEAM ) {
+
+			// respawning rules
+			// drop the quantity if the already have over the minimum
+			if ( other->client->ps.ammo[ ent->item->giTag ] < quantity ) {
+				quantity = quantity - other->client->ps.ammo[ ent->item->giTag ];
+			} else {
+				quantity = 1;		// only add a single shot
