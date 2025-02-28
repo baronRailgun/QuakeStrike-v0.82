@@ -375,6 +375,8 @@ static void CG_RocketTrail( centity_t *ent, const weaponInfo_t *wi ) {
 	for ( ; t <= ent->trailTime ; t += step ) {
 		BG_EvaluateTrajectory( &es->pos, t, lastPos );
 
+
+
 		smoke = CG_SmokePuff( lastPos, up, 
 					  wi->trailRadius, 
 					  1, 1, 1, 0.33f,
@@ -386,6 +388,7 @@ static void CG_RocketTrail( centity_t *ent, const weaponInfo_t *wi ) {
 		// use the optimized local entity add
 		smoke->leType = LE_SCALE_FADE;
 	}
+
 
 }
 
@@ -592,7 +595,8 @@ CG_GrenadeTrail
 ==========================
 */
 static void CG_GrenadeTrail( centity_t *ent, const weaponInfo_t *wi ) {
-	CG_RocketTrail( ent, wi );
+//	CG_RocketTrail( ent, wi );
+return;
 }
 
 
@@ -1127,7 +1131,7 @@ static void CG_LightningBolt( centity_t *cent, vec3_t origin ) {
 CG_MachinegunSpinAngle
 ======================
 */
-#define		SPIN_SPEED	0.9
+#define		SPIN_SPEED	0.0
 #define		COAST_TIME	1000
 static float	CG_MachinegunSpinAngle( centity_t *cent ) {
 	int		delta;
@@ -1648,14 +1652,14 @@ The current weapon has just run out of ammo
 void CG_OutOfAmmoChange( void ) {
 	int		i;
 
-	cg.weaponSelectTime = cg.time;
-
-	for ( i = MAX_WEAPONS-1 ; i > 0 ; i-- ) {
-		if ( CG_WeaponSelectable( i ) ) {
-			cg.weaponSelect = i;
-			break;
-		}
+	if ( cg.noAmmoCooldown == 0) {
+		trap_S_StartLocalSound(cgs.media.noAmmoSound, CHAN_LOCAL);
+		cg.noAmmoCooldown = 1;
 	}
+	else {
+		return;
+	}
+
 }
 
 

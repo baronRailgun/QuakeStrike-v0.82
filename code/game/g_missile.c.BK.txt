@@ -279,10 +279,6 @@ void G_MissileImpact( gentity_t *ent, trace_t *trace ) {
 	if (other->client) {
 	        int armura = other->client->ps.stats[STAT_ARMOR];
         	Com_Printf("Enemy Armor on impact: %d\n", armura); 
-		if (armura > 40) {
-            		int extraDamage = (rand() % (armura + 1)) / 2;  // Random bonus damage
-    			ent->damage += extraDamage;
-        	}
 	}
 
 

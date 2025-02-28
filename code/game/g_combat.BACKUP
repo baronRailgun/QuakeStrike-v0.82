@@ -997,6 +997,12 @@ void G_Damage( gentity_t *targ, gentity_t *inflictor, gentity_t *attacker,
 
 
 
+//	if (ent->client && ent->client->ps.stats[STAT_ARMOR] > 75) {
+ //       m->damage += 40;  // Increase direct hit damage
+//        m->splashDamage -= 40;  // Decrease splash damage                   // LUAT DE LA g_weapons.c -rocket section
+
+
+
 /*	if (mod == MOD_ROCKET) {
     		if (targ->client && targ->client->ps.stats[STAT_ARMOR] > 75) {
 			if (targ->client && targ->client->ps.stats[STAT_ARMOR] > 180)	{
@@ -1212,7 +1218,7 @@ G_RadiusDamage
 */
 qboolean G_RadiusDamage ( vec3_t origin, gentity_t *attacker, float damage, float radius,
 					 gentity_t *ignore, int mod) {
-	float		dist;
+	float		points, dist;
 	gentity_t	*ent;
 	int			entityList[MAX_GENTITIES];
 	int			numListedEntities;
@@ -1221,8 +1227,6 @@ qboolean G_RadiusDamage ( vec3_t origin, gentity_t *attacker, float damage, floa
 	vec3_t		dir;
 	int			i, e;
 	qboolean	hitClient = qfalse;
-	int		armura = 0;
-	float		points = 0.0f;
 
 	if ( radius < 1 ) {
 		radius = 1;
@@ -1243,15 +1247,6 @@ qboolean G_RadiusDamage ( vec3_t origin, gentity_t *attacker, float damage, floa
 		if (!ent->takedamage)
 			continue;
 
-		// Initialize points for each entity
-		points = 0.0f;
-		// If the entity is a player, get armor value
-		if (ent->client) {
-			armura = ent->client->ps.stats[STAT_ARMOR];
-			Com_Printf("Splash Damage: Target Armor = %d\n", armura);
-		}
-
-
 		// find the distance from the edge of the bounding box
 		for ( i = 0 ; i < 3 ; i++ ) {
 			if ( origin[i] < ent->r.absmin[i] ) {
@@ -1268,13 +1263,7 @@ qboolean G_RadiusDamage ( vec3_t origin, gentity_t *attacker, float damage, floa
 			continue;
 		}
 
-		points = damage * ( 1.0f - dist / radius );
-
-		// **Apply armor-based splash damage rule**      CHATGPT
-		if (armura > 150) {
-			Com_Printf("Splash damage reduced to 0 due to high armor!\n");
-			points = 0.0f;  // Set damage to 0 instead of skipping entity
-		}
+		points = damage * ( 1.0 - dist / radius );
 
 		if( CanDamage (ent, origin) ) {
 			if( LogAccuracyHit( ent, attacker ) ) {

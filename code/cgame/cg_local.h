@@ -639,6 +639,8 @@ typedef struct {
 	char			testModelName[MAX_QPATH];
 	qboolean		testGun;
 
+	int noAmmoCooldown;  // Add this line  -CHATGPT
+
 } cg_t;
 
 

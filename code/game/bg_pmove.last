@@ -371,54 +371,85 @@ static void PM_SetMovementDir( void ) {
 PM_CheckJump
 =============
 */
-static qboolean PM_CheckJump(void) {
-    int conditie_strafejump = pm->ps->stats[STAT_BIG_MAC];
+static qboolean PM_CheckJump( void ) {
 
-    if (pm->ps->pm_flags & PMF_RESPAWNED) {
-        return qfalse;  // Don't allow jump until all buttons are up
-    }
 
-    if (pm->cmd.upmove < 10) {
-        // Not holding jump
-        return qfalse;
-    }
+	int conditie_strafejump = pm->ps->stats[STAT_BIG_MAC];    // verificam armura cantitatea instead
+	
+	if ( pm->ps->pm_flags & PMF_RESPAWNED ) {
+		return qfalse;		// don't allow jump until all buttons are up
+	}
 
-    // Must wait for jump to be released
-    if (pm->ps->pm_flags & PMF_JUMP_HELD) {
-        pm->cmd.upmove = 0;  // Clear upmove so it doesn't queue
-        return qfalse;
-    }
+	if ( pm->cmd.upmove < 10 ) {
+		// not holding jump
+		return qfalse;
+	}
 
-    // Check armor limit
-    if (pm->ps->stats[STAT_ARMOR] >= 175) {
-        pm->cmd.upmove = 0;  // Deny the jump input
-        return qfalse;
-    }
+	// must wait for jump to be released
+	if ( pm->ps->pm_flags & PMF_JUMP_HELD ) {
+		// clear upmove so cmdscale doesn't lower running speed
+		pm->cmd.upmove = 0;
+		return qfalse;
+	}
 
-    // Check jump delay for strafejumping
-    if (conditie_strafejump && pm->cmd.serverTime - pm->ps->lastJumpTime <= 1500) {
-        pm->cmd.upmove = 0;  // Deny the jump input during cooldown
-        return qfalse;
-    }
 
-    // Jump is allowed
-    pml.groundPlane = qfalse;  // Jumping away
-    pml.walking = qfalse;
-    pm->ps->pm_flags |= PMF_JUMP_HELD;
-    pm->ps->groundEntityNum = ENTITYNUM_NONE;
-    pm->ps->velocity[2] = 270;
-    pm->ps->lastJumpTime = pm->cmd.serverTime;
-    PM_AddEvent(EV_JUMP);
 
-    if (pm->cmd.forwardmove >= 0) {
-        PM_ForceLegsAnim(LEGS_JUMP);
-        pm->ps->pm_flags &= ~PMF_BACKWARDS_JUMP;
-    } else {
-        PM_ForceLegsAnim(LEGS_JUMPB);
-        pm->ps->pm_flags |= PMF_BACKWARDS_JUMP;
-    }
 
-    return qtrue;
+
+		//	------------------------------ChatGPT + EUGEN --------------------------start
+	if (pm->ps->stats[STAT_ARMOR] >= 175) {
+		pm->ps->velocity[2] = 0;   //  test   ........  nojump  JUMP_VELOCITY; 
+	}
+
+	else if (conditie_strafejump && pm->cmd.serverTime - pm->ps->lastJumpTime <= 1500) {
+			pm->ps->velocity[2] = 0; 
+
+			return qfalse;  	
+	}
+				
+	else  if (conditie_strafejump && pm->cmd.serverTime - pm->ps->lastJumpTime > 1500) {
+  	 	pml.groundPlane = qfalse;		// jumping away
+	 	pml.walking = qfalse;
+	 	pm->ps->pm_flags |= PMF_JUMP_HELD;
+		pm->ps->groundEntityNum = ENTITYNUM_NONE;
+		pm->ps->velocity[2] = 270;
+		pm->ps->lastJumpTime = pm->cmd.serverTime; 	//	EUGEN + CHATGPT
+		PM_AddEvent( EV_JUMP );
+
+		if ( pm->cmd.forwardmove >= 0 ) {
+			PM_ForceLegsAnim( LEGS_JUMP );
+			pm->ps->pm_flags &= ~PMF_BACKWARDS_JUMP;
+		} else {
+		PM_ForceLegsAnim( LEGS_JUMPB );
+		pm->ps->pm_flags |= PMF_BACKWARDS_JUMP;
+		}
+
+	return qtrue;
+	}
+
+
+	else {
+		pml.groundPlane = qfalse;		// jumping away
+	 	pml.walking = qfalse;
+	 	pm->ps->pm_flags |= PMF_JUMP_HELD;
+		pm->ps->groundEntityNum = ENTITYNUM_NONE;
+		pm->ps->velocity[2] = 270;
+		pm->ps->lastJumpTime = pm->cmd.serverTime; 	//	EUGEN + CHATGPT
+		PM_AddEvent( EV_JUMP );
+
+		if ( pm->cmd.forwardmove >= 0 ) {
+			PM_ForceLegsAnim( LEGS_JUMP );
+			pm->ps->pm_flags &= ~PMF_BACKWARDS_JUMP;
+		} else {
+		PM_ForceLegsAnim( LEGS_JUMPB );
+		pm->ps->pm_flags |= PMF_BACKWARDS_JUMP;
+		}
+
+	return qtrue;
+	}
+
+
+
 }
 
 

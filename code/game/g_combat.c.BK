@@ -997,6 +997,12 @@ void G_Damage( gentity_t *targ, gentity_t *inflictor, gentity_t *attacker,
 
 
 
+//	if (ent->client && ent->client->ps.stats[STAT_ARMOR] > 75) {
+ //       m->damage += 40;  // Increase direct hit damage
+//        m->splashDamage -= 40;  // Decrease splash damage                   // LUAT DE LA g_weapons.c -rocket section
+
+
+
 /*	if (mod == MOD_ROCKET) {
     		if (targ->client && targ->client->ps.stats[STAT_ARMOR] > 75) {
 			if (targ->client && targ->client->ps.stats[STAT_ARMOR] > 180)	{
@@ -1271,7 +1277,7 @@ qboolean G_RadiusDamage ( vec3_t origin, gentity_t *attacker, float damage, floa
 		points = damage * ( 1.0f - dist / radius );
 
 		// **Apply armor-based splash damage rule**      CHATGPT
-		if (armura > 150) {
+		if (armura > 60) {
 			Com_Printf("Splash damage reduced to 0 due to high armor!\n");
 			points = 0.0f;  // Set damage to 0 instead of skipping entity
 		}

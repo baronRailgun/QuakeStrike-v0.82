@@ -403,7 +403,7 @@ void Weapon_RocketLauncher_Fire (gentity_t *ent) {
         	armura = m->enemy->client->ps.stats[STAT_ARMOR]; 
 			Com_Printf("Enemy Armor: %d\n", armura);
                 	if (armura > 40) {
-	            	int extraDamage = (rand() % (armura + 1)) / 4; // Random between 1 and armor, divided by 2
+	            	int extraDamage = (rand() % (armura + 1)) / 2; // Random between 1 and armor, divided by 2
 	            	m->damage += extraDamage;
         		}
     		}
@@ -414,6 +414,8 @@ void Weapon_RocketLauncher_Fire (gentity_t *ent) {
 	m->damage = (m->damage + 40) * s_quadFactor;
 	//EUGEN  aici sa adaug if armura MAI MARE DECAT... 40 ceva
 	}
+
+	
 	m->splashDamage = (m->splashDamage - 40) * s_quadFactor;
 
 
