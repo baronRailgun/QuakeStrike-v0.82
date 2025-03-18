@@ -377,9 +377,9 @@ void weapon_grenadelauncher_fire (gentity_t *ent) {
 	VectorNormalize( forward );
 
 	m = fire_grenade (ent, muzzle, forward);
-	m->damage = (m->damage + 60) * s_quadFactor;
+	m->damage = (m->damage - 40) * s_quadFactor;
 
-	m->splashDamage = (m->splashDamage - 38) * s_quadFactor;
+	m->splashDamage = (m->splashDamage - 68) * s_quadFactor;
 
 //	VectorAdd( m->s.pos.trDelta, ent->client->ps.velocity, m->s.pos.trDelta );	// "real" physics
 }

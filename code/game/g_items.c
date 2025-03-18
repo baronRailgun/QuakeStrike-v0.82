@@ -552,9 +552,9 @@ void Touch_Item (gentity_t *ent, gentity_t *other, trace_t *trace) {
 	}
 
 	// non zero wait overrides respawn time
-	if ( ent->wait ) {
-		respawn = ent->wait;
-	}
+//	if ( ent->wait ) {
+//		respawn = ent->wait;
+//	}
 
 	// random can be used to vary the respawn time
 	if ( ent->random ) {
@@ -704,8 +704,9 @@ void FinishSpawningItem( gentity_t *ent ) {
 	ent->use = Use_Item;
 
 	if ( ent->spawnflags & 1 ) {
-		// suspended
+		// suspended		
 		G_SetOrigin( ent, ent->s.origin );
+//		return;			recomandat de chatgpt
 	} else {
 		// drop to floor
 		VectorSet( dest, ent->s.origin[0], ent->s.origin[1], ent->s.origin[2] - 4096 );

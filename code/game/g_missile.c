@@ -585,9 +585,9 @@ gentity_t *fire_grenade (gentity_t *self, vec3_t start, vec3_t dir) {
 //	bolt->s.eFlags = EF_BOUNCE_HALF;
 	bolt->r.ownerNum = self->s.number;
 	bolt->parent = self;
-	bolt->damage = 140;
-	bolt->splashDamage = 80;
-	bolt->splashRadius = 380;
+	bolt->damage = 70;
+	bolt->splashDamage = 84;
+	bolt->splashRadius = 480;
 	bolt->methodOfDeath = MOD_GRENADE;
 	bolt->splashMethodOfDeath = MOD_GRENADE_SPLASH;
 	bolt->clipmask = MASK_SHOT;
