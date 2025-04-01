@@ -1,9 +1,9 @@
 
-A combination between Quake and other more realistic shooters mechanics, random damage, modified movement, etc.  _____ based on ioQuake3_____   
+A combination between Quake mechanics and other more realistic shooters mechanics, like Counter Strike, with random damage, modified movement, etc.  code_____ based on ioQuake3_____   
 
 IN MORE DETAIL:
 
-The goal of the mod is to level the field or better said to reduce a bit the huge gap between dedicated veteran quake players and regulars, so non-quake players can also make some frags and try to apply strategies versus experienced quake players. It is also, of course, not designed for competitions or for people with competitive obsessions in mind, but for players to try different strategies and put their hope on positive aleatory numbers of have a laugh when damage random is not on their favor. Consistent play is of course rewarded, but is more like in poker where the good play can be seen from multiple rounds, not just from one or two played hands.
+The goal of the mod is to level the field or better said to reduce a bit the huge gap between dedicated veteran quake players and regular fps players, so non-quake players can also make some frags and try to apply strategies versus experienced quake players. It is also, of course, not designed for competitions or for people with competitive obsessions in mind, but for players to try different strategies and put their hope on positive aleatory numbers of have a laugh when damage random is not on their favor. Consistent play is of course rewarded, but is more like in poker where the good play can be seen from multiple rounds, not just from one or two played hands.
 
 Modifications:
 
