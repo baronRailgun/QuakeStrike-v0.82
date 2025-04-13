@@ -7,29 +7,29 @@ The goal of the mod is to level the field or better said to reduce a bit the hug
 
 Modifications:
 
-MOVEMENT: above certain ammo and number of weapons, strafe jump should not work, because delays between jumps; counter balance, straight run without jumps has a 1.1 increased in speed. If armor is above certain value jumping does not work anymore at all.
+MOVEMENT: pick up more than two weapons, and strafe jump is gone, because delay between jumps; counter balance, running forward without jumps has 1.1 increased in speed. If armor is close to 200, jump does not work anymore.
 
-PHYSICS: fall damage increased, so no more cheese the match by jumping two levels from above to harass the players who are low on hp and armor.
+PHYSICS: fall damage increased, based on amount of armor so no more jumping two levels down to relentlessly harass players low on hp
 
 WEAPONS:
 
--machinegun does random damage, each in every x 4-5 whatever shot deals massive damage, and ammo is very limited. So the role of MG is to use it mainly for defense or for covering/blind fire.
+-machinegun deals random damage, each every 4-5 whatever shot deals massive damage, and ammo is very limited. So the role of MG is to use mainly for defense or for covering/blind fire.  -lowered a bit to avoid MG only players
 
--gauntlet deals 75 damage + the missing health from maximum. The less health you have, the stonger the gauntlet.
+-gauntlet deals damage based on missing health. The less health, the stonger the gauntlet
 
--shotgun have increased damage and very limited range, should be used for defense.
+-shotgun have increased damage and very limited range, should be used for defense
 
--lightning gun deals double damage to armored enemies, because electricity + metal materials are not good friends with ironed players.
+-lightning gun deals double damage to armored enemies, because electricity + metal materials are not good friends with players
 
--plasmagun does increased splash damage and rate of fire is doubled. Should be used for diverse strategies and anticipation moves. Ammo amount is bigger than for other weapons.
+-plasmagun does increased splash damage and rate of fire is doubled. Should be used for diverse strategies and anticipation moves. Ammo amount is bigger than for other weapons
 
--rocket launcher deals increased damage to armored players IF direct damage, to encourage rocket skills, and deals reduced splash damage to armor, up to close to 0 (less than 1 did not work) if armor is bigger than certain amount. Versus players with no armor, direct damaga is still bigger than standard q3 settings. Splash damage has decreased value but increased range.
+-rocket launcher deals increased damage to armored players IF direct damage, to encourage rocket skills, and deals reduced splash damage to armor, up to close to 0 (less than 1 did not work) if armor is bigger than certain amount. Versus players with no armor, direct damage is still bigger than standard q3 settings. Splash damage has decreased value but increased range
 
 -grenade launcher has bigger velocity, close to rocket launchers attached to some weapons in real wars. Decreased range damage (and ---to be done ---decreased direct damage as well)  --DONE !
 
 -railgun deals massive amount of damage, ignoring armor. The counter balance supposed to be higher reload times, but since maximum ammo is 1, this does not matter. Also just picking up the railgun gives 0 slugs, so players have to make their way to ammo to use the railgun
 
-Others weapons I did not modify, since the mod is only supposed to work in ffa or duel, with standard ioquake3.
+Others weapons I did not modify, since mod is only supposed to work in ffa or duel, with standard ioquake3.
 
 MOD TESTED ONLY versus BOTS. Potential problems that would arise in player versus players have not been addressed.
 
@@ -44,8 +44,6 @@ MOD TESTED ONLY versus BOTS. Potential problems that would arise in player versu
 
 (first update made this):
 -rocket launcher deals damage based on targets armor -increased DIRECT HITS if armor is over certain amount and RADIUS damage very weak if armor is above certain amount
-
--gauntlet deals damage 75+ the amount of health that players lacks -ie if player health is 100, dmg is 75, if player health is 10 dmg is 75+90
 
 
 
